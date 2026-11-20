@@ -1,63 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Professional Footer</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-        max-width: 800px;
-        margin: 50px auto;
-        background-color: #E1C16E;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .note {
-        color: #7CFC00;
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-    }
-    .contact-info, .links, .footer {
-        text-align: center;
-        margin-bottom: 15px;
-    }
-    .contact-info h6, .links h6 {
-        margin: 5px 0;
-    }
-    .links a {
-        text-decoration: none;
-        color: #007bff;
-        transition: color 0.3s;
-    }
-    .links a:hover {
-        color: #0056b3;
-    }
-    .footer {
-        font-size: 0.9rem;
-        color: #555;
-    }
-</style>
-</head>
+	<meta charset="utf-8">
+	<title>{{ title }}</title>
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=medium-dpi" />
+         {% include 'header.html' %}    
+    </head>
+
 <body>
+	<div class="container text-center">
+        <div style="margin:10px"></div>
+		<!--<div class="animate-area">
+            <img class="img-fluid temp-hidden" src="images/logo-small.png" />
+            </div>-->
 
-    <div class="links">
-        <h6>Watch Online Cable TV: <a href="https://ph.klcis.cc/?fbclid=IwY2xjawExQEZleHRuA2FlbQIxMQABHW8oqUfgxugVZkD7W4Z1RbkPglW7tgaPmuygc2C89aNN7mxuBFqlzDAkuQ_aem_Jb5q9Khro9gjK9o68l-rRg" target="_blank"><u>Tap Here</u></a></h6>
-        <h6>Watch Online MOVIES: <a href="https://tubitv.com/home/" target="_blank"><u>Tap Here</u></a></h6>
-    </div>
-        
+<br>
 
-    <div class="footer's 
-        <p>DG PORTAL</p>
-    </div>
-</div>
+<div class="card shadow mt-5" style="border-radius: 20px; background-color: black; border-color: #00FFFF;">
+	  <div class="alert alert-danger bg-transparent mt-5" style="text-transform: uppercase; border-radius: 20px; border-color: #00FFFF; border-left-color: transparent; border-top-color: transparent;  border-right-color: transparent; color: cyan;  box-shadow: 0 5px 2px -2px #00FF00; ">
+          <marquee>  {{ portalannouncement }} </marquee> 
+				</div> 
 
-</body>
-</html>
+
+           <div class="d-flex justify-content-center ">
+  	     <div style="margin-top: -170px;" >
+		<div id="carousel-id" class="carousel slide"  data-interval="{{slidertimer}}000" data-ride="carousel" >           
+		   <div class="carousel-inner" role="listbox">
+							{% for d in banner if d.banner %}
+			<div class="carousel-item {% if loop.first %} active {% endif %}">
+<img src="/assets/images/{{ d.banner }}" class="mb-5" style=" border-radius: 10px;" height="110px" width="80%">
+			</div>
+            {% endfor %}
+		   </div>
+		</div>
+             </div> 
+          </div>
+
+
+
+
+
+		<div class="row">
+			<div class="col-md-12 h2">
+				<div id="status">{{getstatus| raw}}</div>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom:10px;">
+				<div class="col-md-12"> <small
+                                            style="color:#007bff;text-transform: uppercase;">IP: <span style="color:#00FF00;">{{ ip }}</span>   Mac:  <span style="color: #00FF00;">{{ mac }}</span>  </small>
+				</div> 
+
+				<div class="col-md-12"> <small style="color:#007bff;text-transform: uppercase;">Account Credits: ₱{{ remainingcredit }} </small>
+                </div>
+                <div class="col-md-12"> <small style="color:#007bff;text-transform: uppercase;"> <div id="remaindata"> </div> </small>
+				</div> 
+				
+
+<div class="col-md-12"> <strong style="color:#fff;text-transform: uppercase;"> <div id="timesign"> {{TimeSign | raw}} </div></strong >
+				</div>
+
+				<div class="col-md-12">
+					<div id="rtime"> {{getUserremainingTime | raw}}</div>
+				</div>
+			</div>
+            <div id="default_container">
+
+			<div class="temp-hidden">
+            
+            
+               {% if freehour == 1 %}
+				<div class="row" style="margin-bottom:10px;" id="free_time_animation">
+					<div class="col-md-12">
+						<button type="button" id="freetime" class="btn btn-danger button-rnd ">Get Free Time</button>
+					</div>
+				</div>    
+                {% endif %}
+                
+				{% if insertcoin == 1 %}
+				<div class="row" style="margin-bottom:10px;" id="insert_coin_animation">
+					<div class="col-md-12">
+                        <div class="col-md-12">
+                    {% if checkavailableonline < 1 %}
+						<button type="button" id="insert_coin_button" value="zxcv" class="insert_coin_button btn btn-success button-rnd" ">INSERT COIN</button>
+						{% else %}
+						<button type="button" data-toggle="modal" data-target="#multicoinslot" class="btn btn-success button-rnd" >INSERT COIN</button>
+                        {% endif %}
+                        </div>
+				</div>
+				{% endif %}
+				
+				{% if pausetime == 1 %}
+                    <div class="row" id="pcheck" style="margin-bottom:10px;">
+					<div class="col-md-12">
+						<button type="button" id="pfunc" class="btn btn-danger button-rnd btn-spinner">Pause Time</button>
+					</div>
+				</div>
+			
+				{% endif %}
+				
+				{% if viewrates == 1 %}
+				<div class="row" id="pfuncwifi" style="margin-bottom:10px;">
+					<div class="col-md-12">
+						<button type="button" class="btn btn-primary button-rnd" data-toggle="modal" data-target="#popup">Wifi Rates</button>
+                        </div>
+				</div>
+				{% endif %}
+				
+				
+				{% if viewchargingrates == 1 %}
+				<div class="row" id="pfunccrates" style="margin-bottom:10px;">
+					<div class="col-md-12">
+						<button type="button" class="btn btn-primary button-rnd" data-toggle="modal" data-target="#chargingstation">Charging Rates</button>
+					</div>
+				</div>
+				{% endif %}
+                    	{% if buyload == 1 %}
+				<div class="row" id="peload" style="margin-bottom:10px;">
+					<div class="col-md-12">
+						<button type="button" class="btn btn-danger button-rnd" data-target="#buyload" data-toggle="modal" data-backdrop="static" data-keyboard="false">Buy Load</button>
+					</div>
+				</div>
+				{% endif %}
+                    	{% if checkbalance == 1 %}
+				<div class="row" id="pcheckbalance" style="margin-bottom:10px;">
+					<div class="col-md-12">
+						<button type="button" class="btn btn-danger button-rnd" data-target="#checkbalance" data-toggle="modal" data-backdrop="static" data-keyboard="false">Check Balance</button>
+					</div>
+				</div>
+				{% endif %}
+
+
+				{% if chatbox == 1 %}
+				<div class="row" style="margin-bottom:10px;" id="chat_box_animation">
+                    {% if chatbox == 1 %}
+				<div class="row" style="margin-bottom:10px;" id="chat_box_animation">
+					<div class="col-md-12"> 
+						<button type="button" class="btn btn-danger button-rnd" data-target="#chatbox" data-toggle="modal" data-backdrop="static" data-keyboard="false">CHATBOX {{unreadmessages | raw}}</button>
+					</div>
+				</div>
+				{% endif %}
+                    <div class="row" style="margin-bottom:10px;" id="application">
+					<div class="col-md-12"> 
+						<a href="https://tubitv.com/home/" class="btn btn-danger button-rnd">Watch Online MOVIES</u></a></h6>
+    </div>				</div>
+
+<div class="row" style="margin-bottom:10px;" id="application">
+					<div class="col-md-12"> 
+						<a
+                           href="https://ph.klcis.cc/?fbclid=IwY2xjawExQEZleHRuA2FlbQIxMQABHW8oqUfgxugVZkD7W4Z1RbkPglW7tgaPmuygc2C89aNN7mxuBFqlzDAkuQ_aem_Jb5q9Khro9gjK9o68l-rRg"
+ class="btn btn-danger button-rnd">Watch Online Cable TV</u></a></h6>
+    </div>				</div>	
+
+<div class="row" style="margin-bottom:10px;" id="application">
+					<div class="col-md-12"> 
+						<a href="https://bibamax.com/" class="btn btn-danger button-rnd">Watch Online Bibamax</u></a></h6>
+                        
